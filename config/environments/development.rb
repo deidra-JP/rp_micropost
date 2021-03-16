@@ -62,4 +62,7 @@ Rails.application.configure do
   
   # Cloud9 への接続を許可する
   config.hosts.clear
+  
+  # 認証メール内URL（例１）
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
