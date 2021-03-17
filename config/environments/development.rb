@@ -65,4 +65,15 @@ Rails.application.configure do
   
   # 認証メール内URL（例１）
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-end
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => 'smtp.gmail.com',
+    :user_name => "deidra1971359911@gmail.com",
+    :password => "h16oib8fngu7shgtb",
+    :authentication => 'login'
+  }
+  end
