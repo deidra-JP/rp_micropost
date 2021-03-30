@@ -64,7 +64,7 @@ Rails.application.configure do
   config.hosts.clear
   
   # 認証メール内URL（例１）
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'https://90063065873b457d99e41843896dfaf2.vfs.cloud9.us-east-2.amazonaws.com/' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -73,7 +73,7 @@ Rails.application.configure do
     :port => 587,
     :domain => 'smtp.gmail.com',
     :user_name => "deidra1971359911@gmail.com",
-    :password => "h16oib8fngu7shgtb",
+    :password => "ereuloslsvxvtkjb",
     :authentication => 'login'
   }
   end
