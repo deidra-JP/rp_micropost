@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy, :show, :new]
+  before_action :authenticate_user!, only: [:create, :destroy, :new, :index, :show, :following, :followers ]
   before_action :correct_user,   only: :destroy
 
   def create
@@ -20,11 +20,30 @@ class MicropostsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+  end  
+  
+  def index
+    @users = User.paginate(page: params[:page])
   end  
   
   def new
     @micropost = current_user.microposts.build if user_signed_in?
     @feed_items = current_user.feed.paginate(page: params[:page])
+  end
+ 
+  def following_user
+    @title = "following_user"
+    @user  = User.find(params[:id])
+    @users = @user.following_user.paginate(page: params[:page])
+    render 'microposts/show_follow'
+  end
+
+  def follower_user
+    @title = "Follower_user"
+    @user  = User.find(params[:id])
+    @users = @user.follower_user.paginate(page: params[:page])
+    render 'microposts/show_follow'
   end
   
   private
