@@ -1,13 +1,13 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
-  has_many :followed, class_name:  "Relationship",
-                      foreign_key: "followed_id", 
-                      dependent:   :destroy
-  has_many :follower, class_name:  "Relationship",
-                      foreign_key: "follower_id",
-                      dependent:   :destroy
-  has_many :follower_user, through: :followed, source: :follower
-  has_many :following_user, through: :follower,  source: :followed
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id", 
+                                   dependent:   :destroy
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+  has_many :follower_user, through: :passive_relationships, source: :follower
+  has_many :following_user, through: :active_relationships,  source: :followed
   # Include default devise modules. Others available are:
   
   devise :database_authenticatable, :registerable,
@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def unfollow(other_user)
-    followed.find_by(followed_id: other_user.id).destroy
+    active_relationships.find_by(followed_id: other_user_id).destroy
   end
 
   def following?(other_user)
