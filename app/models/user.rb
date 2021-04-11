@@ -23,7 +23,9 @@ class User < ApplicationRecord
   end       
   
   def follow(other_user)
+   unless self == other_user
     following_user << other_user
+   end  
   end
 
   def unfollow(other_user)

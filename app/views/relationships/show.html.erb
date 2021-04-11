@@ -1,10 +1,11 @@
 <h1>ユーザー情報</h1>
 <div id="follow_form">
   <% if current_user.following?(@user) %>
-    <%= render 'microposts/unfollow' %>
+    <%= render "relationships/unfollow" %>
   <% else %>
-    <%= render 'microposts/follow' %>
+    <%= render "relationships/follow" %>
   <% end %>
 </div>
+
 
      

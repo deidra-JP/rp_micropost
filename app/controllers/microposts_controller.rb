@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy, :new, :index, :show, :following, :followers ]
+  before_action :authenticate_user!, only: [:create, :destroy, :new, :following, :followers ]
   before_action :correct_user,   only: :destroy
 
   def create
@@ -18,14 +18,6 @@ class MicropostsController < ApplicationController
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || root_url
   end
-
-  def show
-    @user = User.find(params[:id])
-  end  
-  
-  def index
-    @users = User.paginate(page: params[:page])
-  end  
   
   def new
     @micropost = current_user.microposts.build if user_signed_in?
