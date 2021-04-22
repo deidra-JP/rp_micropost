@@ -24,8 +24,8 @@ class MicropostsController < ApplicationController
     @feed_items = current_user.feed.paginate(page: params[:page])
   end
  
-  def following_user
-    @title = "following_user"
+  def following
+    @title = "following"
     @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'microposts/show_follow'

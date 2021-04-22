@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :microposts
   resources :microposts do
     member do
-      get :following_user, :follower_user
+      get :following, :follower_user
     end
   end
   resources :relationships, only: [:create, :destroy, :index, :show]
