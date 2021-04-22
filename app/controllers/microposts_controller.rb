@@ -27,7 +27,7 @@ class MicropostsController < ApplicationController
   def following_user
     @title = "following_user"
     @user  = User.find(params[:id])
-    @users = @user.following_user.paginate(page: params[:page])
+    @users = @user.following.paginate(page: params[:page])
     render 'microposts/show_follow'
   end
 

@@ -7,7 +7,7 @@ class User < ApplicationRecord
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
   has_many :follower_user, through: :passive_relationships, source: :follower
-  has_many :following_user, through: :active_relationships,  source: :followed
+  has_many :following, through: :active_relationships,  source: :followed
   # Include default devise modules. Others available are:
   
   devise :database_authenticatable, :registerable,
@@ -24,7 +24,7 @@ class User < ApplicationRecord
   
   def follow(other_user)
    unless self == other_user
-    following_user << other_user
+    following << other_user
    end  
   end
 
@@ -33,6 +33,6 @@ class User < ApplicationRecord
   end
 
   def following?(other_user)
-    following_user.include?(other_user)
+    following.include?(other_user)
   end  
 end
