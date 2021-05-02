@@ -72,8 +72,8 @@ Rails.application.configure do
     :address => "smtp.gmail.com",
     :port => 587,
     :domain => 'smtp.gmail.com',
-    :user_name => "deidra1971359911@gmail.com",
-    :password => "ereuloslsvxvtkjb",
+    :user_name => "認証メール用の@gmail.com",
+    :password => "上記のパスワード",
     :authentication => 'login'
   }
   end
